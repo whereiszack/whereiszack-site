@@ -58,6 +58,9 @@ h2{margin:38px 14px 12px;color:var(--muted);font-weight:500}
 .thumb{position:relative;aspect-ratio:16/9;background:#16181c;overflow:hidden}
 .thumb img{display:block;width:100%;height:100%;object-fit:cover}
 .thumb::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-40%,-50%);border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--fg);filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
+.thumb.emmy{display:grid;place-items:center;text-align:center;border:1px solid var(--fg);background:transparent}
+.thumb.emmy::after{display:none}
+.thumb.emmy .mono{color:var(--fg);font-size:12px;line-height:1.4}
 .film b{display:block;font-size:16px;line-height:1.25}
 .film .mono{color:var(--muted);display:block;margin-top:6px}
 
@@ -83,11 +86,13 @@ footer{display:flex;justify-content:space-between;padding:40px 14px 6px;color:va
     <li><a class="btn primary" href="/#contact">Work with me <small>send a message</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="/">Website <small>whereiszack.com</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="https://axemacana.com">Axe Macana <small>studio</small><span class="arrow" aria-hidden="true">→</span></a></li>
+    <li><a class="btn" href="https://www.imdb.com/name/nm13654843/">IMDb <small>credits</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="https://www.facebook.com/whereiszack">Facebook <small>whereiszack</small><span class="arrow" aria-hidden="true">→</span></a></li>
   </ul>
 
   <h2 class="mono">Films</h2>
   <ul class="films">
+    <li><a class="film" href="https://www.imdb.com/title/tt29542404/"><span class="thumb emmy"><span class="mono">Emmy<br>winner</span></span><span><b>Safe Enough</b><span class="mono">Field producer · 2024 Northwest Emmy</span></span></a></li>
     <li><a class="film" href="https://www.youtube.com/watch?v=Pi3CbgBvyog"><span class="thumb"><img src="https://i.ytimg.com/vi/Pi3CbgBvyog/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Finland to Canada: Mobile Saunas, New Frontiers</b><span class="mono">Watch on YouTube</span></span></a></li>
     <li><a class="film" href="https://www.youtube.com/watch?v=lWMcmbraQgk"><span class="thumb"><img src="https://i.ytimg.com/vi/lWMcmbraQgk/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Doe Bay: A Place to Find Yourself</b><span class="mono">Watch on YouTube</span></span></a></li>
     <li><a class="film" href="https://www.youtube.com/watch?v=XlbpT5VNiQM"><span class="thumb"><img src="https://i.ytimg.com/vi/XlbpT5VNiQM/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>The Secret Spas &amp; Mobile Saunas of Vancouver, BC</b><span class="mono">Watch on YouTube</span></span></a></li>
