@@ -59,6 +59,30 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
 .credits li .mono{color:var(--muted);font-size:12px;padding-top:3px}
 .credits a{text-underline-offset:.2em}
 @media(max-width:640px){.credits li{grid-template-columns:1fr;gap:2px}}
+.contact{border-top:1px solid var(--line);padding:72px 44px 88px}
+.contact .wrap{max-width:640px}
+.contact h2{font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(40px,7vw,72px);line-height:.9;margin:10px 0 12px}
+.contact .lede{color:var(--muted);margin:0 0 32px;font-size:17px;line-height:1.5}
+.field{margin:0 0 18px}
+.field label{display:block;margin:0 0 8px;color:var(--muted)}
+.field input,.field textarea{width:100%;background:transparent;border:1px solid var(--line);color:var(--fg);font:inherit;font-size:17px;padding:12px 14px;border-radius:0}
+.field textarea{min-height:150px;resize:vertical}
+.field input:hover,.field textarea:hover{border-color:rgba(236,238,241,.45)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--fg)}
+.check{display:flex;gap:12px;align-items:flex-start;margin:6px 0 26px;cursor:pointer;font-size:16px;line-height:1.45}
+.check input{appearance:none;flex:none;width:20px;height:20px;margin:1px 0 0;border:1px solid var(--muted);background:transparent;display:grid;place-content:center;cursor:pointer}
+.check input:checked{background:var(--fg);border-color:var(--fg)}
+.check input:checked::after{content:"";width:10px;height:6px;border:solid var(--bg);border-width:0 0 2px 2px;transform:translateY(-1px) rotate(-45deg)}
+.check input:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.check small{display:block;color:var(--muted);font-size:14px}
+.send{display:inline-flex;align-items:center;gap:10px;background:var(--fg);color:var(--bg);border:0;font:inherit;font-weight:700;padding:14px 22px;cursor:pointer}
+.send:hover{background:#fff}
+.send .dot{animation:none}
+.status{min-height:1.5em;margin:16px 0 0;color:var(--muted)}
+.status.ok{color:var(--fg)}
+.status.err{color:var(--rec)}
+.hp{position:absolute;left:-9999px}
+@media(max-width:640px){.contact{padding:56px 18px 64px}}
 @media(max-width:640px){
   .bar{padding:10px 18px}
   .bar .hide-sm{display:none}
@@ -84,6 +108,7 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
     <ul class="links">
       <li><a href="https://www.instagram.com/whereiszack/">Instagram <span>@whereiszack</span></a></li>
       <li><a href="https://axemacana.com">Axe Macana <span>studio</span></a></li>
+      <li><a href="#contact">Contact <span>send a message</span></a></li>
     </ul>
     <section class="credits" aria-labelledby="cr">
       <h2 id="cr" class="mono">Selected credits</h2>
@@ -99,6 +124,45 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
     <span class="hide-sm">© 2026 Zack Robertson</span>
   </footer>
 </div>
+
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <p class="mono" style="color:var(--muted);margin:0">Contact</p>
+    <h2 id="contact-title">Roll camera</h2>
+    <p class="lede">Have a project, a story, or a question? Send it here and it comes straight to me.</p>
+    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="New message from whereiszack.com">
+      <input type="hidden" name="from_name" value="whereiszack.com">
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field"><label class="mono" for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required></div>
+      <div class="field"><label class="mono" for="c-email">Email</label><input id="c-email" type="email" name="email" autocomplete="email" placeholder="you@studio.com" required></div>
+      <div class="field"><label class="mono" for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
+      <label class="check"><input type="checkbox" name="newsletter" value="Yes, add me to the newsletter"><span>Add me to the newsletter if Zack starts one<small>No spam. Unsubscribe any time.</small></span></label>
+      <button class="send" type="submit"><i class="dot" aria-hidden="true" style="width:8px;height:8px;border-radius:50%;background:var(--rec);display:block"></i><span id="send-label">Send message</span></button>
+      <p class="status mono" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+<script>
+(function(){
+  var f=document.getElementById('contact-form'); if(!f||!window.fetch) return;
+  var st=document.getElementById('form-status'), lab=document.getElementById('send-label'), busy=false;
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); if(busy) return; busy=true;
+    lab.textContent='Sending…'; st.className='status mono'; st.textContent='';
+    var data=new FormData(f); if(!data.get('newsletter')) data.set('newsletter','No');
+    fetch(f.action,{method:'POST',body:data,headers:{Accept:'application/json'}})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok&&j.success,j:j}})})
+      .then(function(res){
+        if(res.ok){f.reset(); st.className='status mono ok'; st.textContent='Message sent. Thank you.';}
+        else{st.className='status mono err'; st.textContent='That did not send. Try again in a minute.';}
+      })
+      .catch(function(){st.className='status mono err'; st.textContent='That did not send. Check your connection and try again.';})
+      .finally(function(){busy=false; lab.textContent='Send message';});
+  });
+})();
+</script>
 <script>
 (function(){
   var el=document.getElementById('tc'); if(!el) return;
