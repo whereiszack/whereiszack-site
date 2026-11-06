@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0b0d">
+<title>Zack Robertson</title>
+<meta name="description" content="Zack Robertson. Filmmaker and creative director.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0b0d;--fg:#eceef1;--muted:#8b9099;--line:rgba(236,238,241,.2);--rec:#ff2d2d;--gap:clamp(16px,3vw,32px)}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+::selection{background:var(--fg);color:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+
+.frame{position:relative;min-height:100vh;min-height:100svh;padding:var(--gap);display:grid;grid-template-rows:auto 1fr auto}
+.frame::before,.frame::after,.c3,.c4{content:"";position:absolute;width:28px;height:28px;border:0 solid var(--fg);pointer-events:none}
+.frame::before{top:var(--gap);left:var(--gap);border-top-width:2px;border-left-width:2px}
+.frame::after{top:var(--gap);right:var(--gap);border-top-width:2px;border-right-width:2px}
+.c3{bottom:var(--gap);left:var(--gap);border-bottom-width:2px;border-left-width:2px}
+.c4{bottom:var(--gap);right:var(--gap);border-bottom-width:2px;border-right-width:2px}
+
+.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 44px;color:var(--muted)}
+.rec{color:var(--fg);display:inline-flex;align-items:center;gap:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--rec);animation:blink 1.2s steps(1) infinite}
+.rec b{color:var(--rec);font-weight:500}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.tc{font-variant-numeric:tabular-nums;color:var(--fg)}
+
+main{display:flex;flex-direction:column;justify-content:center;padding:24px 44px}
+.kicker{color:var(--muted);margin:0 0 18px}
+h1{margin:0;font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.86;letter-spacing:-.01em;font-size:clamp(56px,min(11vw,17vh),180px)}
+h1 span{display:block}
+h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;line-height:1.2;margin-top:.15em;color:var(--muted)}
+.role{max-width:46ch;font-size:clamp(17px,2vw,21px);line-height:1.5;margin:22px 0 28px}
+.role strong{font-weight:700}
+.links{display:flex;flex-wrap:wrap;gap:12px;list-style:none;margin:0;padding:0}
+.links a{display:inline-flex;align-items:center;gap:10px;text-decoration:none;border:1px solid var(--line);padding:12px 16px}
+.links a:hover{border-color:var(--fg)}
+.links a span{color:var(--muted)}
+.links a:hover span{color:var(--fg)}
+
+.cross{position:absolute;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);pointer-events:none;opacity:.35}
+.cross::before,.cross::after{content:"";position:absolute;background:var(--fg)}
+.cross::before{left:50%;top:0;width:1px;height:100%}
+.cross::after{top:50%;left:0;height:1px;width:100%}
+
+@media(max-width:640px){
+  .bar{padding:10px 18px}
+  .bar .hide-sm{display:none}
+  main{padding:32px 18px}
+  .cross{display:none}
+}
+</style>
+</head>
+<body>
+<div class="frame">
+  <i class="c3" aria-hidden="true"></i><i class="c4" aria-hidden="true"></i>
+
+  <header class="bar mono">
+    <span class="rec" aria-hidden="true"><i class="dot"></i><b>Rec</b></span>
+    <span class="tc" id="tc" aria-hidden="true">00:00:00:00</span>
+    <span class="hide-sm" aria-hidden="true">24 fps · 16:9</span>
+  </header>
+
+  <main>
+    <p class="kicker mono">Where is Zack? Behind the camera.</p>
+    <h1><span>Zack</span><span>Robertson</span><span class="thin">Filmmaker</span></h1>
+    <p class="role">Films, campaigns and creative direction. Currently <strong>Creative Director for Paul Saladino MD</strong>.</p>
+    <ul class="links">
+      <li><a href="https://www.instagram.com/whereiszack/">Instagram <span>@whereiszack</span></a></li>
+      <li><a href="https://axemacana.com">Axe Macana <span>studio</span></a></li>
+    </ul>
+  </main>
+
+  <footer class="bar mono">
+    <span>whereiszack.com</span>
+    <span class="hide-sm">© 2026 Zack Robertson</span>
+  </footer>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('tc'); if(!el) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var t0=performance.now(), p=function(n){return String(n).padStart(2,'0')};
+  (function tick(now){
+    var f=Math.floor((now-t0)/1000*24), s=Math.floor(f/24);
+    el.textContent=p(Math.floor(s/3600))+':'+p(Math.floor(s/60)%60)+':'+p(s%60)+':'+p(f%24);
+    requestAnimationFrame(tick);
+  })(t0);
+})();
+</script>
+</body>
+</html>
