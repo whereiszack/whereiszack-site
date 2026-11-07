@@ -47,6 +47,16 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
 .links a span{color:var(--muted)}
 .links a:hover span{color:var(--fg)}
 
+.still{margin:32px 0 0;position:relative}
+.still img{display:block;width:100%;height:auto;max-height:70vh;object-fit:cover;border:1px solid var(--line)}
+.still figcaption{position:absolute;left:10px;bottom:10px;background:rgba(10,11,13,.7);padding:4px 8px;color:var(--fg)}
+@media(min-width:960px){
+  main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);column-gap:56px;align-content:center;align-items:start}
+  .intro{grid-column:1;grid-row:1}
+  .credits{grid-column:1;grid-row:2}
+  .still{grid-column:2;grid-row:1/3;margin:0;align-self:center}
+  .still img{max-height:none}
+}
 .cross{position:absolute;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);pointer-events:none;opacity:.35}
 .cross::before,.cross::after{content:"";position:absolute;background:var(--fg)}
 .cross::before{left:50%;top:0;width:1px;height:100%}
@@ -111,6 +121,7 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
   </header>
 
   <main>
+    <div class="intro">
     <p class="kicker mono">Where is Zack? Behind the camera.</p>
     <h1><span>Zack</span><span>Robertson</span><span class="thin">Filmmaker</span></h1>
     <p class="role">Films, campaigns and creative direction. Currently <strong>Creative Director for Paul Saladino MD</strong>.</p>
@@ -120,6 +131,11 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
       <li><a href="https://www.imdb.com/name/nm13654843/">IMDb <span>credits</span></a></li>
       <li><a href="#contact">Contact <span>send a message</span></a></li>
     </ul>
+    </div>
+    <figure class="still">
+      <img src="img/zack-steadicam.webp" alt="Zack Robertson on set, wearing a camera stabilizer rig by the water" width="960" height="1200">
+      <figcaption class="mono">On set</figcaption>
+    </figure>
     <section class="credits" aria-labelledby="cr">
       <h2 id="cr" class="mono">Selected credits</h2>
       <ul>
