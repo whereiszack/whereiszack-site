@@ -48,14 +48,21 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
 .links a:hover span{color:var(--fg)}
 
 .still{margin:32px 0 0;position:relative}
-.still img{display:block;width:100%;height:auto;max-height:70vh;object-fit:cover;border:1px solid var(--line)}
+.slides{position:relative;aspect-ratio:4/5;max-height:70vh;border:1px solid var(--line);overflow:hidden;background:#16181c}
+.slides img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 1.2s ease,transform 7s linear}
+.slides img.on{opacity:1;transform:scale(1)}
+.still figcaption{display:flex;gap:10px;align-items:center}
+.ticks{display:inline-flex;gap:5px}
+.ticks i{width:14px;height:2px;background:var(--muted)}
+.ticks i.on{background:var(--rec)}
+@media (prefers-reduced-motion:reduce){.slides img{transition:none;transform:none}}
 .still figcaption{position:absolute;left:10px;bottom:10px;background:rgba(10,11,13,.7);padding:4px 8px;color:var(--fg)}
 @media(min-width:960px){
   main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);column-gap:56px;align-content:center;align-items:start}
   .intro{grid-column:1;grid-row:1}
   .credits{grid-column:1;grid-row:2}
   .still{grid-column:2;grid-row:1/3;margin:0;align-self:center}
-  .still img{max-height:none}
+  .slides{max-height:none}
 }
 .cross{position:absolute;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);pointer-events:none;opacity:.35}
 .cross::before,.cross::after{content:"";position:absolute;background:var(--fg)}
@@ -133,8 +140,11 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
     </ul>
     </div>
     <figure class="still">
-      <img src="img/zack-steadicam.webp" alt="Zack Robertson on set, wearing a camera stabilizer rig by the water" width="960" height="1200">
-      <figcaption class="mono">On set</figcaption>
+      <div class="slides" id="slides">
+        <img class="on" src="img/zack-steadicam.webp" alt="Zack Robertson on set, wearing a camera stabilizer rig by the water" width="960" height="1200">
+        <img src="img/zack-gimbal.webp" alt="Zack Robertson filming an event with a gimbal on a pole" width="960" height="1200" loading="lazy">
+      </div>
+      <figcaption class="mono"><span>On set</span><span class="ticks" id="ticks" aria-hidden="true"><i class="on"></i><i></i></span></figcaption>
     </figure>
     <section class="credits" aria-labelledby="cr">
       <h2 id="cr" class="mono">Selected credits</h2>
@@ -226,6 +236,19 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
     el.textContent=p(Math.floor(s/3600))+':'+p(Math.floor(s/60)%60)+':'+p(s%60)+':'+p(f%24);
     requestAnimationFrame(tick);
   })(t0);
+})();
+</script>
+<script>
+(function(){
+  var box=document.getElementById('slides'); if(!box) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var imgs=box.querySelectorAll('img'), ticks=document.getElementById('ticks').children, i=0;
+  setInterval(function(){
+    if(document.hidden) return;
+    imgs[i].classList.remove('on'); ticks[i].classList.remove('on');
+    i=(i+1)%imgs.length;
+    imgs[i].classList.add('on'); ticks[i].classList.add('on');
+  },6000);
 })();
 </script>
 </body>
