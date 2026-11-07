@@ -125,7 +125,9 @@ footer{display:flex;justify-content:space-between;padding:40px 14px 6px;color:va
 @media(max-width:700px){.bar .menu,.hud .menu{display:none}.menubtn{display:inline-block}.bar .tc{margin-left:auto}}
 .frame .bar .menu{gap:14px}
 h2[id]{scroll-margin-top:64px}
-.stat{margin:6px 0 18px;display:flex;align-items:baseline;gap:10px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 14px 8px}
+.stat{margin:0;display:flex;flex-direction:column;gap:6px}
+.stats-note{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 14px 18px}
 .stat strong{font-weight:900;font-stretch:62%;font-size:40px;line-height:1;color:var(--fg)}
 .stat .mono{color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
 </style>
@@ -171,7 +173,12 @@ h2[id]{scroll-margin-top:64px}
 
   <h2 class="mono" id="social">Social <span class="hint">· creative direction for Paul Saladino MD</span></h2>
   <p class="blurb">Since 2022, leading creative direction and production across Paul’s YouTube, short-form and social, and shaping the brand’s narrative and on-camera identity.</p>
-  <p class="stat"><strong>787</strong> <span class="mono">posts over 1M views since 2022</span></p>
+  <div class="stats">
+    <p class="stat"><strong>3.2B</strong> <span class="mono">views</span></p>
+    <p class="stat"><strong>4.5B+</strong> <span class="mono">impressions</span></p>
+    <p class="stat"><strong>787</strong> <span class="mono">posts over 1M views</span></p>
+  </div>
+  <p class="stats-note mono">Since March 2022 · all platforms</p>
   <h3 class="mono sub">Top short-form <span class="hint">· Instagram &amp; YouTube</span></h3>
   <ul class="shorts">
     <li><a href="https://www.instagram.com/paulsaladinomd/reel/C7RquTfIacu/"><span class="vthumb"><img src="img/ig-cutting-boards.jpg" alt="" loading="lazy" width="180" height="320"><span class="views mono">63M views · IG</span></span><span class="stitle">Why I use wooden cutting boards</span></a></li>
