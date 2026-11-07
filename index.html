@@ -117,16 +117,49 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
   main{padding:32px 18px}
   .cross{display:none}
 }
+
+/* site menu */
+.bar .menu{display:flex;gap:22px}
+.menu a{color:var(--muted);text-decoration:none;letter-spacing:.12em}
+.menu a:hover,.menu a[aria-current="true"]{color:var(--fg)}
+.menu a[aria-current="true"]::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--rec);margin:0 7px 1px 0}
+.menubtn{display:none;background:none;border:1px solid var(--line);color:var(--fg);padding:6px 10px;cursor:pointer;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.hud{position:fixed;left:0;right:0;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px clamp(16px,3vw,32px);background:rgba(10,11,13,.86);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transform:translateY(-100%);transition:transform .25s ease;color:var(--muted)}
+.hud.show{transform:none}
+.hud .rec{text-decoration:none}
+.hud .menu{display:flex;gap:22px}
+.overlay{position:fixed;inset:0;z-index:40;background:var(--bg);display:flex;flex-direction:column;padding:20px}
+.overlay[hidden]{display:none}
+.overlay-top{display:flex;justify-content:space-between;align-items:center}
+.overlay nav{margin:auto 0;display:grid;gap:6px}
+.overlay nav a{display:flex;align-items:baseline;gap:16px;text-decoration:none;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(48px,15vw,88px);line-height:1}
+.overlay nav a .mono{font-size:12px;color:var(--muted);font-weight:400}
+.overlay nav a:hover{color:#fff}
+.overlay-home{color:var(--muted);text-decoration:none}
+@media (prefers-reduced-motion:reduce){.hud{transition:none}}
+@media(max-width:700px){.bar .menu,.hud .menu{display:none}.menubtn{display:inline-block}.bar .tc{margin-left:auto}}
+#credits,#contact,#sauna-channel{scroll-margin-top:64px}
 </style>
 </head>
 <body>
+<div class="hud mono" id="hud" aria-hidden="true">
+  <a class="rec" href="/" tabindex="-1"><i class="dot"></i><b>Rec</b></a>
+  <nav class="menu"><a tabindex="-1" href="/links/#films">Films</a><a tabindex="-1" href="/links/#social">Social</a><a tabindex="-1" href="/#credits">Credits</a><a tabindex="-1" href="/#contact">Contact</a></nav>
+  <button type="button" class="menubtn mono" tabindex="-1" aria-expanded="false" aria-controls="menu-overlay">Menu</button>
+</div>
+<div class="overlay" id="menu-overlay" hidden>
+  <div class="overlay-top mono"><span class="rec"><i class="dot"></i><b>Rec</b></span><button type="button" class="menubtn mono" id="menu-close">Close</button></div>
+  <nav aria-label="Site menu"><a href="/links/#films"><span class="mono">01</span>Films</a><a href="/links/#social"><span class="mono">02</span>Social</a><a href="/#credits"><span class="mono">03</span>Credits</a><a href="/#contact"><span class="mono">04</span>Contact</a></nav>
+  <a class="overlay-home mono" href="/">whereiszack.com</a>
+</div>
 <div class="frame">
   <i class="c3" aria-hidden="true"></i><i class="c4" aria-hidden="true"></i>
 
-  <header class="bar mono">
+  <header class="bar mono topbar">
     <span class="rec" aria-hidden="true"><i class="dot"></i><b>Rec</b></span>
+    <nav class="menu" aria-label="Site"><a href="/links/#films">Films</a><a href="/links/#social">Social</a><a href="/#credits">Credits</a><a href="/#contact">Contact</a></nav>
     <span class="tc" id="tc" aria-hidden="true">00:00:00:00</span>
-    <span class="hide-sm" aria-hidden="true">24 fps · 16:9</span>
+    <button type="button" class="menubtn mono" aria-expanded="false" aria-controls="menu-overlay">Menu</button>
   </header>
 
   <main>
@@ -148,10 +181,10 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
       </div>
       <figcaption class="mono"><span>On set</span><span class="ticks" id="ticks"><button type="button" class="on" aria-label="Show photo 1" aria-pressed="true"></button><button type="button" aria-label="Show photo 2" aria-pressed="false"></button></span></figcaption>
     </figure>
-    <section class="credits" aria-labelledby="cr">
+    <section class="credits" id="credits" aria-labelledby="cr">
       <h2 id="cr" class="mono">Selected credits</h2>
       <ul>
-        <li><span class="mono">Creative director · since 2022</span><span><a href="/links/#paul">Paul Saladino MD</a><small class="note">Every YouTube video since March 2022 and his top shorts, up to 63M views</small></span></li>
+        <li><span class="mono">Creative director · since 2022</span><span><a href="/links/#social">Paul Saladino MD</a><small class="note">Every YouTube video since March 2022 and his top shorts, up to 63M views</small></span></li>
         <li><span class="mono">Field producer</span><span><a href="https://www.imdb.com/title/tt29542404/">Safe Enough</a> (2023) <span class="award mono">Emmy winner</span><small class="note">2024 Northwest Emmy, Documentary – Topical</small></span></li>
         <li><span class="mono">Line producer</span><span><a href="https://www.imdb.com/title/tt31186959/">This Film Is Going to Be About a Sauna</a> (Sauna Channel, 2023) <span class="award mono">Award winner</span><small class="note">2024 Global Film Festival Awards, Honorable Mention, Best Documentary</small></span></li>
         <li><span class="mono">Director · Producer · Camera</span><span><a href="#sauna-channel">Sauna Channel</a>, 13 episodes incl. West Coast Sauna Summit (2025)</span></li>
@@ -253,6 +286,29 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
   function start(){ if(still) return; clearInterval(timer); timer=setInterval(function(){ if(!document.hidden) show(i+1); },6000); }
   for(var k=0;k<ticks.length;k++)(function(k){ ticks[k].addEventListener('click',function(){ show(k); start(); }); })(k);
   start();
+})();
+</script>
+<script>
+(function(){
+  var ov=document.getElementById('menu-overlay'), hud=document.getElementById('hud'), bar=document.querySelector('.topbar');
+  var btns=document.querySelectorAll('.menubtn'), last=null;
+  function open(){ last=document.activeElement; ov.hidden=false; document.body.style.overflow='hidden'; btns.forEach(function(b){b.setAttribute('aria-expanded','true')}); var a=ov.querySelector('nav a'); if(a) a.focus(); }
+  function close(){ ov.hidden=true; document.body.style.overflow=''; btns.forEach(function(b){b.setAttribute('aria-expanded','false')}); if(last&&last.focus) last.focus(); }
+  btns.forEach(function(b){ if(b.id!=='menu-close') b.addEventListener('click',open); });
+  document.getElementById('menu-close').addEventListener('click',close);
+  ov.addEventListener('click',function(e){ if(e.target.closest('a')) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!ov.hidden) close(); });
+  if(bar&&hud&&'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ var off=!es[0].isIntersecting; hud.classList.toggle('show',off); hud.setAttribute('aria-hidden',off?'false':'true'); hud.querySelectorAll('a,button').forEach(function(el){ el.tabIndex=off?0:-1; }); }).observe(bar);
+  }
+  var path=location.pathname.replace(/index\.html$/,'');
+  var ids={'/links/':['films','social'],'/':['credits','contact']}[path]||[];
+  var links=document.querySelectorAll('.menu a');
+  function mark(id){ links.forEach(function(a){ a.setAttribute('aria-current', (a.hash==='#'+id && a.pathname.replace(/index\.html$/,'')===path) ? 'true':'false'); }); }
+  if('IntersectionObserver' in window && ids.length){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) mark(e.target.id); }); },{rootMargin:'-45% 0px -50% 0px'});
+    ids.forEach(function(id){ var el=document.getElementById(id); if(el) io.observe(el); });
+  }
 })();
 </script>
 </body>
