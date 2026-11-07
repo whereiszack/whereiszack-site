@@ -54,7 +54,20 @@ h1 span{display:block}
 @media(max-width:480px){.btn{grid-template-columns:1fr auto;row-gap:2px}.btn small{grid-column:1;grid-row:2;font-size:15px}.btn .arrow{grid-column:2;grid-row:1/3}}
 
 h2{margin:38px 14px 12px;color:var(--muted);font-weight:500}
-.films{list-style:none;margin:0;padding:0 14px;display:grid;gap:14px}
+.films{list-style:none;margin:0;padding:0 14px;display:grid;gap:14px;align-content:start}
+.pager{display:grid;grid-auto-flow:column;grid-auto-columns:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.pager::-webkit-scrollbar{display:none}
+.pager .page{scroll-snap-align:start}
+.thumb.still::after{display:none}
+.thumb.still img{object-position:50% 35%}
+.hint{color:var(--muted);opacity:.7}
+.pagenav{display:flex;align-items:center;gap:14px;padding:16px 14px 0;color:var(--muted)}
+.pagenav button{background:none;border:1px solid var(--line);color:var(--fg);font:inherit;width:36px;height:32px;cursor:pointer}
+.pagenav button:disabled{opacity:.3;cursor:default}
+.pagenav #pgnum{font-variant-numeric:tabular-nums}
+.dots{display:flex;gap:8px;margin-right:auto}
+.dots button{width:8px;height:8px;padding:0;border:1px solid var(--muted);border-radius:50%}
+.dots button[aria-current="true"]{background:var(--rec);border-color:var(--rec)}
 .film{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:center;border:1px solid var(--line);padding:8px}
 .film:hover{border-color:var(--fg)}
 .thumb{position:relative;aspect-ratio:16/9;background:#16181c;overflow:hidden}
@@ -99,16 +112,30 @@ footer{display:flex;justify-content:space-between;padding:40px 14px 6px;color:va
     <li><a class="btn" href="https://www.facebook.com/whereiszack">Facebook <small>whereiszack</small><span class="arrow" aria-hidden="true">→</span></a></li>
   </ul>
 
-  <h2 class="mono">Films</h2>
-  <ul class="films">
-    <li><a class="film" href="https://www.imdb.com/title/tt29542404/"><span class="thumb award"><img src="img/safe-enough.jpg" alt="" loading="lazy" width="320" height="180"><span class="badge"><svg><use href="#laurel"/></svg><span><b>Emmy</b>Winner<br>2024</span></span></span><span><b>Safe Enough</b><span class="mono">Field producer · 2024 Northwest Emmy</span></span></a></li>
-    <li><a class="film" href="https://www.imdb.com/title/tt31186959/"><span class="thumb award"><img src="img/about-a-sauna.jpg" alt="" loading="lazy" width="320" height="180"><span class="badge"><svg><use href="#laurel"/></svg><span><b>Winner</b>Global Film<br>Festival</span></span></span><span><b>This Film Is Going to Be About a Sauna</b><span class="mono">Line producer · 2024 Global Film Festival Awards</span></span></a></li>
-    <li><a class="film" href="https://www.youtube.com/watch?v=Pi3CbgBvyog"><span class="thumb"><img src="https://i.ytimg.com/vi/Pi3CbgBvyog/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Finland to Canada: Mobile Saunas, New Frontiers</b><span class="mono">Watch on YouTube</span></span></a></li>
-    <li><a class="film" href="https://www.youtube.com/watch?v=lWMcmbraQgk"><span class="thumb"><img src="https://i.ytimg.com/vi/lWMcmbraQgk/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Doe Bay: A Place to Find Yourself</b><span class="mono">Watch on YouTube</span></span></a></li>
-    <li><a class="film" href="https://www.youtube.com/watch?v=XlbpT5VNiQM"><span class="thumb"><img src="https://i.ytimg.com/vi/XlbpT5VNiQM/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>The Secret Spas &amp; Mobile Saunas of Vancouver, BC</b><span class="mono">Watch on YouTube</span></span></a></li>
-    <li><a class="film" href="https://www.youtube.com/watch?v=zqoQEv7qOMk"><span class="thumb"><img src="https://i.ytimg.com/vi/zqoQEv7qOMk/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Boat Box Hot Springs</b><span class="mono">iPhone · GoPro · Drone</span></span></a></li>
-    <li><a class="film" href="https://www.youtube.com/watch?v=bLzotZaO6dA"><span class="thumb"><img src="https://i.ytimg.com/vi/bLzotZaO6dA/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Goldmyer Hot Springs, WA</b><span class="mono">Watch on YouTube</span></span></a></li>
-  </ul>
+  <h2 class="mono">Films <span class="hint">· swipe</span></h2>
+  <div class="pager" id="pager" tabindex="0" aria-label="Films, swipe for more">
+    <ul class="films page" aria-label="Page 1 of 3">
+      <li><a class="film" href="https://www.imdb.com/title/tt29542404/"><span class="thumb award"><img src="img/safe-enough.jpg" alt="" loading="lazy" width="320" height="180"><span class="badge"><svg><use href="#laurel"/></svg><span><b>Emmy</b>Winner<br>2024</span></span></span><span><b>Safe Enough</b><span class="mono">Field producer · 2023</span></span></a></li>
+      <li><a class="film" href="https://www.imdb.com/title/tt31186959/"><span class="thumb award"><img src="img/about-a-sauna.jpg" alt="" loading="lazy" width="320" height="180"><span class="badge"><svg><use href="#laurel"/></svg><span><b>Winner</b>Global Film<br>Festival</span></span></span><span><b>This Film Is Going to Be About a Sauna</b><span class="mono">Line producer · 2023</span></span></a></li>
+      <li><a class="film" href="https://www.imdb.com/title/tt39365175/"><span class="thumb still"><img src="img/west-coast-sauna-summit.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>West Coast Sauna Summit (2025)</b><span class="mono">Director · Producer · Camera · 2026</span></span></a></li>
+      <li><a class="film" href="https://www.imdb.com/title/tt36462572/"><span class="thumb still"><img src="img/sauna-and-bliss.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Sauna &amp; Bliss</b><span class="mono">Director · Producer · Camera · 2025</span></span></a></li>
+      <li><a class="film" href="https://www.imdb.com/title/tt33038499/"><span class="thumb still"><img src="img/cold-plunge-canada.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Cold Plunge &amp; Sauna: Wellness in Canada</b><span class="mono">Director · Producer · Camera · 2024</span></span></a></li>
+    </ul>
+    <ul class="films page" aria-label="Page 2 of 3">
+      <li><a class="film" href="https://www.youtube.com/watch?v=DqY-hHd2K9o"><span class="thumb"><img src="https://i.ytimg.com/vi/DqY-hHd2K9o/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>“Secret” Spa: Tality</b><span class="mono">Director · Producer · Camera · 2023</span></span></a></li>
+      <li><a class="film" href="https://www.youtube.com/watch?v=XlbpT5VNiQM"><span class="thumb"><img src="https://i.ytimg.com/vi/XlbpT5VNiQM/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>The Secret Spas &amp; Mobile Saunas of Vancouver, BC</b><span class="mono">Director · Producer · Camera · 2023</span></span></a></li>
+      <li><a class="film" href="https://www.youtube.com/watch?v=Pi3CbgBvyog"><span class="thumb"><img src="https://i.ytimg.com/vi/Pi3CbgBvyog/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Finland to Canada: Mobile Saunas, New Frontiers</b><span class="mono">Director · Producer · Camera · 2023</span></span></a></li>
+      <li><a class="film" href="https://www.youtube.com/watch?v=lWMcmbraQgk"><span class="thumb"><img src="https://i.ytimg.com/vi/lWMcmbraQgk/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Doe Bay: A Place to Find Yourself</b><span class="mono">Producer · 2022</span></span></a></li>
+      <li><a class="film" href="https://www.youtube.com/watch?v=zqoQEv7qOMk"><span class="thumb"><img src="https://i.ytimg.com/vi/zqoQEv7qOMk/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Boat Box Hot Springs</b><span class="mono">Director · Producer · Camera · 2022</span></span></a></li>
+    </ul>
+    <ul class="films page" aria-label="Page 3 of 3">
+      <li><a class="film" href="https://www.youtube.com/watch?v=7j9aUALcpi8"><span class="thumb"><img src="https://i.ytimg.com/vi/7j9aUALcpi8/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Archimedes Banya</b><span class="mono">On camera · 2022</span></span></a></li>
+      <li><a class="film" href="https://www.youtube.com/watch?v=bLzotZaO6dA"><span class="thumb"><img src="https://i.ytimg.com/vi/bLzotZaO6dA/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Goldmyer Hot Springs, WA</b><span class="mono">Director · Producer · 2021</span></span></a></li>
+      <li><a class="film" href="https://www.imdb.com/title/tt26928292/"><span class="thumb still"><img src="img/banya-5.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Banya 5</b><span class="mono">Director · Producer · 2021</span></span></a></li>
+      <li><a class="film" href="https://www.youtube.com/watch?v=6MFdk-iuJZw"><span class="thumb"><img src="https://i.ytimg.com/vi/6MFdk-iuJZw/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Scenic Hot Springs</b><span class="mono">Director · Producer · 2021</span></span></a></li>
+    </ul>
+  </div>
+  <div class="pagenav mono"><button type="button" id="prev" aria-label="Previous page">←</button><span id="pgnum">1 / 3</span><span class="dots" id="dots"><button type="button" aria-label="Page 1"></button><button type="button" aria-label="Page 2"></button><button type="button" aria-label="Page 3"></button></span><button type="button" id="next" aria-label="Next page">→</button></div>
 
   <footer class="mono"><span>whereiszack.com</span><span>24 fps</span></footer>
 </div>
@@ -122,6 +149,20 @@ footer{display:flex;justify-content:space-between;padding:40px 14px 6px;color:va
     el.textContent=p(Math.floor(s/3600))+':'+p(Math.floor(s/60)%60)+':'+p(s%60)+':'+p(f%24);
     requestAnimationFrame(tick);
   })(t0);
+})();
+</script>
+<script>
+(function(){
+  var p=document.getElementById('pager'); if(!p) return;
+  var pages=p.children, n=pages.length, dots=document.getElementById('dots').children, num=document.getElementById('pgnum'), prev=document.getElementById('prev'), next=document.getElementById('next');
+  function cur(){return Math.round(p.scrollLeft/p.clientWidth)}
+  function go(i){p.scrollTo({left:i*p.clientWidth,behavior:'smooth'})}
+  function sync(){var i=cur(); num.textContent=(i+1)+' / '+n; for(var k=0;k<n;k++) dots[k].setAttribute('aria-current',k===i?'true':'false'); prev.disabled=i===0; next.disabled=i===n-1;}
+  for(var k=0;k<n;k++)(function(k){dots[k].onclick=function(){go(k)}})(k);
+  prev.onclick=function(){go(cur()-1)}; next.onclick=function(){go(cur()+1)};
+  p.addEventListener('scroll',function(){window.requestAnimationFrame(sync)},{passive:true});
+  p.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(cur()+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(cur()-1)}});
+  sync();
 })();
 </script>
 </body>
