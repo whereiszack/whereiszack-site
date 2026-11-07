@@ -36,7 +36,10 @@ a{color:inherit;text-decoration:none}
 
 header.id{padding:34px 14px 26px}
 .kicker{color:var(--muted);margin:0 0 12px}
-.avatar{display:block;width:96px;height:96px;object-fit:cover;border:1px solid var(--fg);margin:0 0 20px}
+.name{display:inline-block}
+.sub{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:10px 0 0}
+.sub .what{color:var(--fg);font-size:17px;font-weight:700}
+.sub .kicker{margin:0}
 h1{margin:0;font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.88;font-size:clamp(54px,16vw,84px)}
 h1 span{display:block}
 .role{color:var(--muted);font-size:17px;line-height:1.45;margin:14px 0 0}
@@ -145,9 +148,11 @@ h2[id]{scroll-margin-top:64px}
   </header>
 
   <header class="id">
-    <p class="kicker mono">@whereiszack</p>
-    <h1><span>Zack</span><span>Robertson</span></h1>
-    <p class="role">Filmmaker. Creative Director for <a href="#social"><strong>Paul Saladino MD</strong></a>. Stories that feel true.</p>
+    <div class="name">
+      <h1><span>Zack</span><span>Robertson</span></h1>
+      <p class="sub"><span class="what">Filmmaker</span><span class="kicker mono">@whereiszack</span></p>
+    </div>
+    <p class="role">Creative Director for <a href="#social"><strong>Paul Saladino MD</strong></a>. Stories that feel true.</p>
   </header>
 
   <ul class="list">
