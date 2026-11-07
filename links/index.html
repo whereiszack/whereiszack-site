@@ -43,13 +43,14 @@ h1 span{display:block}
 
 .list{list-style:none;margin:0;padding:0 14px}
 .list li+li{margin-top:10px}
-.btn{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);padding:16px 16px;font-size:18px;font-weight:700}
-.btn small{color:var(--muted);font-weight:400}
+.btn{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr) auto;align-items:center;gap:12px;border:1px solid var(--line);padding:16px 16px;font-size:18px;font-weight:700}
+.btn small{color:var(--muted);font-weight:400;font-size:16px;text-align:left}
 .btn:hover{border-color:var(--fg)}
 .btn.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .btn.primary small{color:#4a4f57}
 .btn.primary:hover{background:#fff}
 .btn .arrow{flex:none;font-family:"IBM Plex Mono",monospace;font-weight:500}
+@media(max-width:480px){.btn{grid-template-columns:1fr auto;row-gap:2px}.btn small{grid-column:1;grid-row:2;font-size:15px}.btn .arrow{grid-column:2;grid-row:1/3}}
 
 h2{margin:38px 14px 12px;color:var(--muted);font-weight:500}
 .films{list-style:none;margin:0;padding:0 14px;display:grid;gap:14px}
@@ -58,9 +59,13 @@ h2{margin:38px 14px 12px;color:var(--muted);font-weight:500}
 .thumb{position:relative;aspect-ratio:16/9;background:#16181c;overflow:hidden}
 .thumb img{display:block;width:100%;height:100%;object-fit:cover}
 .thumb::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-40%,-50%);border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent var(--fg);filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
-.thumb.emmy{display:grid;place-items:center;text-align:center;border:1px solid var(--fg);background:transparent}
-.thumb.emmy::after{display:none}
-.thumb.emmy .mono{color:var(--fg);font-size:12px;line-height:1.4}
+.thumb.award img{object-position:50% 30%}
+.thumb.award::before{content:"";position:absolute;inset:0;background:rgba(10,11,13,.55)}
+.thumb.award::after{display:none}
+.badge{position:absolute;inset:0;display:grid;place-items:center;color:#e8d29a}
+.badge svg{position:absolute;width:66px;height:66px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.badge span{position:relative;font-family:"IBM Plex Mono",monospace;font-size:8px;line-height:1.25;letter-spacing:.12em;text-transform:uppercase;text-align:center;color:#fff}
+.badge b{display:block;font-size:10px;font-weight:500;letter-spacing:.1em}
 .film b{display:block;font-size:16px;line-height:1.25}
 .film .mono{color:var(--muted);display:block;margin-top:6px}
 
@@ -68,6 +73,7 @@ footer{display:flex;justify-content:space-between;padding:40px 14px 6px;color:va
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="laurel" viewBox="0 0 100 100"><g fill="currentColor"><ellipse cx="37.7" cy="83.8" rx="3" ry="7.5" transform="rotate(85.0 37.7 83.8)"/><ellipse cx="27.3" cy="78.0" rx="3" ry="7.5" transform="rotate(104.0 27.3 78.0)"/><ellipse cx="19.5" cy="69.1" rx="3" ry="7.5" transform="rotate(123.0 19.5 69.1)"/><ellipse cx="14.9" cy="58.1" rx="3" ry="7.5" transform="rotate(142.0 14.9 58.1)"/><ellipse cx="14.2" cy="46.2" rx="3" ry="7.5" transform="rotate(-199.0 14.2 46.2)"/><ellipse cx="17.4" cy="34.8" rx="3" ry="7.5" transform="rotate(-180.0 17.4 34.8)"/><ellipse cx="24.1" cy="25.0" rx="3" ry="7.5" transform="rotate(-161.0 24.1 25.0)"/><ellipse cx="62.3" cy="83.8" rx="3" ry="7.5" transform="rotate(95.0 62.3 83.8)"/><ellipse cx="72.7" cy="78.0" rx="3" ry="7.5" transform="rotate(76.0 72.7 78.0)"/><ellipse cx="80.5" cy="69.1" rx="3" ry="7.5" transform="rotate(57.0 80.5 69.1)"/><ellipse cx="85.1" cy="58.1" rx="3" ry="7.5" transform="rotate(38.0 85.1 58.1)"/><ellipse cx="85.8" cy="46.2" rx="3" ry="7.5" transform="rotate(19.0 85.8 46.2)"/><ellipse cx="82.6" cy="34.8" rx="3" ry="7.5" transform="rotate(-0.0 82.6 34.8)"/><ellipse cx="75.9" cy="25.0" rx="3" ry="7.5" transform="rotate(-19.0 75.9 25.0)"/></g></symbol></svg>
 <div class="frame">
   <i class="c3" aria-hidden="true"></i><i class="c4" aria-hidden="true"></i>
 
@@ -93,8 +99,8 @@ footer{display:flex;justify-content:space-between;padding:40px 14px 6px;color:va
 
   <h2 class="mono">Films</h2>
   <ul class="films">
-    <li><a class="film" href="https://www.imdb.com/title/tt29542404/"><span class="thumb emmy"><span class="mono">Emmy<br>winner</span></span><span><b>Safe Enough</b><span class="mono">Field producer · 2024 Northwest Emmy</span></span></a></li>
-    <li><a class="film" href="https://www.imdb.com/title/tt31186959/"><span class="thumb emmy"><span class="mono">Award<br>winner</span></span><span><b>This Film Is Going to Be About a Sauna</b><span class="mono">Line producer · 2024 Global Film Festival Awards</span></span></a></li>
+    <li><a class="film" href="https://www.imdb.com/title/tt29542404/"><span class="thumb award"><img src="img/safe-enough.jpg" alt="" loading="lazy" width="320" height="180"><span class="badge"><svg><use href="#laurel"/></svg><span><b>Emmy</b>Winner<br>2024</span></span></span><span><b>Safe Enough</b><span class="mono">Field producer · 2024 Northwest Emmy</span></span></a></li>
+    <li><a class="film" href="https://www.imdb.com/title/tt31186959/"><span class="thumb award"><img src="img/about-a-sauna.jpg" alt="" loading="lazy" width="320" height="180"><span class="badge"><svg><use href="#laurel"/></svg><span><b>Winner</b>Global Film<br>Festival</span></span></span><span><b>This Film Is Going to Be About a Sauna</b><span class="mono">Line producer · 2024 Global Film Festival Awards</span></span></a></li>
     <li><a class="film" href="https://www.youtube.com/watch?v=Pi3CbgBvyog"><span class="thumb"><img src="https://i.ytimg.com/vi/Pi3CbgBvyog/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Finland to Canada: Mobile Saunas, New Frontiers</b><span class="mono">Watch on YouTube</span></span></a></li>
     <li><a class="film" href="https://www.youtube.com/watch?v=lWMcmbraQgk"><span class="thumb"><img src="https://i.ytimg.com/vi/lWMcmbraQgk/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>Doe Bay: A Place to Find Yourself</b><span class="mono">Watch on YouTube</span></span></a></li>
     <li><a class="film" href="https://www.youtube.com/watch?v=XlbpT5VNiQM"><span class="thumb"><img src="https://i.ytimg.com/vi/XlbpT5VNiQM/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>The Secret Spas &amp; Mobile Saunas of Vancouver, BC</b><span class="mono">Watch on YouTube</span></span></a></li>
