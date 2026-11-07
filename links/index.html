@@ -61,6 +61,19 @@ h2{margin:38px 14px 12px;color:var(--muted);font-weight:500}
 .thumb.still::after{display:none}
 .thumb.still img{object-position:50% 35%}
 .hint{color:var(--muted);opacity:.7}
+.blurb{margin:0 14px 6px;color:var(--muted);font-size:16px;line-height:1.45}
+h3.sub{margin:22px 14px 10px;color:var(--fg);font-weight:500;font-size:11px}
+.shorts{list-style:none;margin:0;padding:0 14px 4px;display:grid;grid-auto-flow:column;grid-auto-columns:42%;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.shorts::-webkit-scrollbar{display:none}
+.shorts li{scroll-snap-align:start}
+.shorts a{display:block}
+.vthumb{position:relative;display:block;aspect-ratio:9/16;background:#16181c;border:1px solid var(--line);overflow:hidden}
+.shorts a:hover .vthumb{border-color:var(--fg)}
+.vthumb img{display:block;width:100%;height:100%;object-fit:cover}
+.views{position:absolute;left:6px;bottom:6px;background:rgba(10,11,13,.75);color:var(--fg);padding:3px 6px;font-size:10px}
+.stitle{display:block;margin-top:8px;font-size:14px;font-weight:700;line-height:1.25}
+.asof{margin:12px 14px 0;color:var(--muted);font-size:10px}
+@media(min-width:520px){.shorts{grid-auto-columns:30%}}
 .pagenav{display:flex;align-items:center;gap:14px;padding:16px 14px 0;color:var(--muted)}
 .pagenav button{background:none;border:1px solid var(--line);color:var(--fg);font:inherit;width:36px;height:32px;cursor:pointer}
 .pagenav button:disabled{opacity:.3;cursor:default}
@@ -100,17 +113,43 @@ footer{display:flex;justify-content:space-between;padding:40px 14px 6px;color:va
     <img class="avatar" src="/img/zack-avatar.jpg" alt="Zack Robertson" width="96" height="96">
     <p class="kicker mono">@whereiszack</p>
     <h1><span>Zack</span><span>Robertson</span></h1>
-    <p class="role">Filmmaker. Creative Director for <strong>Paul Saladino MD</strong>. Stories that feel true.</p>
+    <p class="role">Filmmaker. Creative Director for <a href="#paul"><strong>Paul Saladino MD</strong></a>. Stories that feel true.</p>
   </header>
 
   <ul class="list">
-    <li><a class="btn primary" href="/#contact">Work with me <small>send a message</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="/">Website <small>whereiszack.com</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="https://axemacana.com">Axe Macana <small>studio</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="/#sauna-channel">Sauna Channel <small>13 episodes</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="https://www.imdb.com/name/nm13654843/">IMDb <small>credits</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="https://www.facebook.com/whereiszack">Facebook <small>whereiszack</small><span class="arrow" aria-hidden="true">→</span></a></li>
+    <li><a class="btn" href="/#contact">Inquiries <small>send a message</small><span class="arrow" aria-hidden="true">→</span></a></li>
   </ul>
+
+  <h2 class="mono" id="paul">Paul Saladino MD <span class="hint">· creative director since 2022</span></h2>
+  <p class="blurb">Every YouTube video on Paul’s channel since March 2022, plus his top-performing short-form content.</p>
+  <h3 class="mono sub">Top shorts</h3>
+  <ul class="shorts">
+    <li><a href="https://www.youtube.com/shorts/l6IhEELwo40"><span class="vthumb"><img src="https://i.ytimg.com/vi/l6IhEELwo40/oar2.jpg" alt="" loading="lazy" width="180" height="320"><span class="views mono">9.5M views</span></span><span class="stitle">No Surprise Here…</span></a></li>
+    <li><a href="https://www.youtube.com/shorts/4lDQrXfq3fA"><span class="vthumb"><img src="https://i.ytimg.com/vi/4lDQrXfq3fA/oar2.jpg" alt="" loading="lazy" width="180" height="320"><span class="views mono">5.6M views</span></span><span class="stitle">Homemade healthy air freshener</span></a></li>
+    <li><a href="https://www.youtube.com/shorts/PBJN9wDC9IA"><span class="vthumb"><img src="https://i.ytimg.com/vi/PBJN9wDC9IA/oar2.jpg" alt="" loading="lazy" width="180" height="320"><span class="views mono">5.1M views</span></span><span class="stitle">The death of bacon</span></a></li>
+    <li><a href="https://www.youtube.com/shorts/c0r7yEixoVI"><span class="vthumb"><img src="https://i.ytimg.com/vi/c0r7yEixoVI/oar2.jpg" alt="" loading="lazy" width="180" height="320"><span class="views mono">4.5M views</span></span><span class="stitle">Oatmeal is BS! Here’s why</span></a></li>
+    <li><a href="https://www.youtube.com/shorts/ne-0X9uj2ew"><span class="vthumb"><img src="https://i.ytimg.com/vi/ne-0X9uj2ew/oar2.jpg" alt="" loading="lazy" width="180" height="320"><span class="views mono">4.5M views</span></span><span class="stitle">Animal-based day of eating!</span></a></li>
+    <li><a href="https://www.youtube.com/shorts/8I69ZP5wpb0"><span class="vthumb"><img src="https://i.ytimg.com/vi/8I69ZP5wpb0/oar2.jpg" alt="" loading="lazy" width="180" height="320"><span class="views mono">3.6M views</span></span><span class="stitle">I was interrogated about nutrition on TV…</span></a></li>
+  </ul>
+  <h3 class="mono sub">Collabs</h3>
+  <ul class="films">
+    <li><a class="film" href="https://www.youtube.com/watch?v=lyetKsv-IbU"><span class="thumb"><img src="https://i.ytimg.com/vi/lyetKsv-IbU/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>I Started Making This Instead of Bread (Now I’m Hooked)</b><span class="mono">with Steak and Butter Gal · 560K views · 2026</span></span></a></li>
+    <li><a class="film" href="https://www.youtube.com/watch?v=01op4XmNmxA"><span class="thumb"><img src="https://i.ytimg.com/vi/01op4XmNmxA/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>How Modern Lighting Is Damaging Your Health</b><span class="mono">with Tristan Scott · 73K views · 2025</span></span></a></li>
+  </ul>
+  <h3 class="mono sub">Top videos</h3>
+  <ul class="films">
+    <li><a class="film" href="https://www.youtube.com/watch?v=lDQofCXuYik"><span class="thumb"><img src="https://i.ytimg.com/vi/lDQofCXuYik/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>McDonald’s Secret Ingredients You Never Knew About</b><span class="mono">5.2M views · 2024</span></span></a></li>
+    <li><a class="film" href="https://www.youtube.com/watch?v=kGqGeYdPxMk"><span class="thumb"><img src="https://i.ytimg.com/vi/kGqGeYdPxMk/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>The Truth About Using Nicotine in 2026</b><span class="mono">2.3M views · 2026</span></span></a></li>
+    <li><a class="film" href="https://www.youtube.com/watch?v=67xdgxj0S1E"><span class="thumb"><img src="https://i.ytimg.com/vi/67xdgxj0S1E/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>I Built the Healthiest House to Live to 120</b><span class="mono">1.7M views · 2025</span></span></a></li>
+    <li><a class="film" href="https://www.youtube.com/watch?v=HpvRzZskaKE"><span class="thumb"><img src="https://i.ytimg.com/vi/HpvRzZskaKE/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>What’s Really in the “Food” at Chick-fil-A?</b><span class="mono">1.1M views · 2024</span></span></a></li>
+    <li><a class="film" href="https://www.youtube.com/watch?v=EbzQ_sVpem4"><span class="thumb"><img src="https://i.ytimg.com/vi/EbzQ_sVpem4/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"></span><span><b>I Removed 48 Years Of Toxins From My Blood</b><span class="mono">1.0M views · 2025</span></span></a></li>
+  </ul>
+  <p class="asof mono">View counts as of Nov 2026</p>
 
   <h2 class="mono">Films <span class="hint">· swipe</span></h2>
   <div class="pager" id="pager" tabindex="0" aria-label="Films, swipe for more">
