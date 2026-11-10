@@ -139,6 +139,10 @@ h1 .thin{font-weight:400;font-stretch:125%;font-size:.34em;letter-spacing:.02em;
 @media (prefers-reduced-motion:reduce){.hud{transition:none}}
 @media(max-width:700px){.bar .menu,.hud .menu{display:none}.menubtn{display:inline-block}.bar .tc{margin-left:auto}}
 #credits,#contact,#sauna-channel{scroll-margin-top:64px}
+.links a.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.links a.primary span,.links a.primary:hover span{color:#4a4f57}
+.links a.primary:hover{background:#fff}
+.links a.primary::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rec)}
 </style>
 <script>
 // GoatCounter: one account for several domains, so prefix paths with the host,
@@ -186,7 +190,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <ul class="links">
       <li><a href="https://www.instagram.com/whereiszack/">Instagram <span>@whereiszack</span></a></li>
       <li><a href="https://www.imdb.com/name/nm13654843/">IMDb <span>credits</span></a></li>
-      <li><a href="#contact">Contact <span>send a message</span></a></li>
+      <li><a class="primary" href="#contact">Contact <span>send a message</span></a></li>
     </ul>
     </div>
     <figure class="still">

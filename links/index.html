@@ -44,7 +44,7 @@ h1{margin:0;font-weight:900;font-stretch:62%;text-transform:uppercase;line-heigh
 h1 span{display:block}
 .role{color:var(--muted);font-size:17px;line-height:1.45;margin:14px 0 0}
 .role strong{color:var(--fg);font-weight:700}
-.role a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--rec);text-decoration-thickness:1px;text-underline-offset:4px}
+.role a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--muted);text-decoration-thickness:1px;text-underline-offset:4px}
 .role a:hover{text-decoration-thickness:2px}
 
 .list{list-style:none;margin:0;padding:0 14px}
@@ -55,6 +55,8 @@ h1 span{display:block}
 .btn.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .btn.primary small{color:#4a4f57}
 .btn.primary:hover{background:#fff}
+.btn .go{display:inline-flex;align-items:center;gap:10px}
+.btn .go::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--rec);flex:none}
 .btn .arrow{flex:none;font-family:"IBM Plex Mono",monospace;font-weight:500}
 @media(max-width:480px){.btn{grid-template-columns:1fr auto;row-gap:2px}.btn small{grid-column:1;grid-row:2;font-size:15px}.btn .arrow{grid-column:2;grid-row:1/3}}
 
@@ -183,7 +185,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <li><a class="btn" href="/#sauna-channel">Sauna Channel <small>13 episodes</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="https://www.imdb.com/name/nm13654843/">IMDb <small>credits</small><span class="arrow" aria-hidden="true">→</span></a></li>
     <li><a class="btn" href="https://www.facebook.com/whereiszack">Facebook <small>whereiszack</small><span class="arrow" aria-hidden="true">→</span></a></li>
-    <li><a class="btn" href="/#contact">Inquiries <small>send a message</small><span class="arrow" aria-hidden="true">→</span></a></li>
+    <li><a class="btn primary" href="/#contact"><span class="go">Inquiries</span> <small>send a message</small><span class="arrow" aria-hidden="true">→</span></a></li>
   </ul>
 
   <h2 class="mono" id="social">Social <span class="hint">· creative direction for Paul Saladino MD</span></h2>
