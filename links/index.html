@@ -136,7 +136,7 @@ h2[id]{scroll-margin-top:64px}
 <script>
 // GoatCounter: one account for several domains, so prefix paths with the host,
 // and count clicks on outbound links and buttons as events.
-window.goatcounter={path:function(p){return location.host+p}};
+window.goatcounter={no_onload:true,path:function(p){return location.host+p}};
 document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('a[href]').forEach(function(a){
     if(a.hasAttribute('data-goatcounter-click'))return;
@@ -148,7 +148,13 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
-<script data-goatcounter="https://axemacana.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+// Count first (the ?ref= tag from /ig, /tt, /yt is read here), then clean the address bar.
+function gcReady(){function go(){goatcounter.count();goatcounter.bind_events();
+  if(location.search)history.replaceState(null,'',location.pathname+location.hash)}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()}
+</script>
+<script data-goatcounter="https://axemacana.goatcounter.com/count" async src="//gc.zgo.at/count.js" onload="gcReady()"></script>
 </head>
 <body>
 <div class="hud mono" id="hud" aria-hidden="true">
